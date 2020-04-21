@@ -49,7 +49,7 @@
 						console.log("Ghost Num: ",ghostpeople)
 						for (var i = 0; i < balancecard ; i++) {
 							
-							eachperson[i].push(eachperson[parseInt(ghostpeople)+i])
+							eachperson[i].push(eachperson[parseInt(ghostpeople)][i])
 							console.log("Ghost Evolution: ",parseInt(ghostpeople)+i)
 							console.log("eachperson",eachperson," Ghost Value:",eachperson[parseInt(ghostpeople)+i]," Destination for ghost: ",eachperson[i])
 						}
