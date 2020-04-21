@@ -49,11 +49,13 @@
 						let ghostpeople = $("#num_people").val();
 						console.log("Ghost Num: ",ghostpeople)
 						let extraemptyhand = $("#num_people").val()-balancecard
-						extraemptyhand
+						let destnum = 0;
 						for (var j = 0; j < extraemptyhand ; j++) {
 							for (var i = 0; i < cardpropotions ; i++) {
+								
 								console.log("i:",i," j:",j)
-								eachperson[i].push(eachperson[parseInt(ghostpeople)+j][i])
+								eachperson[destnum].push(eachperson[parseInt(ghostpeople)+j][i])
+								destnum++;
 								console.log("Ghost Evolution: ",parseInt(ghostpeople)+i)
 								console.log("eachperson",eachperson," Ghost Value:",eachperson[parseInt(ghostpeople)+j]," Destination for ghost: ",eachperson[i])
 							}
