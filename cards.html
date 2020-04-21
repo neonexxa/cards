@@ -44,21 +44,22 @@
 					let cardpropotions = parseInt(decks.length/$("#num_people").val())
 					eachperson = _.chunk(decks, cardpropotions);
 					let balancecard = decks.length-(cardpropotions*$("#num_people").val());
-					console.log("cardpropotions:",cardpropotions,balancecard)
+					console.log("cardpropotions:",cardpropotions,"balance",balancecard)
 					if(balancecard > 0){
 						let ghostpeople = $("#num_people").val();
 						console.log("Ghost Num: ",ghostpeople)
 						let extraemptyhand = Math.ceil(balancecard/cardpropotions);
-						
+
 						let destnum = 0;
 						for (var j = 0; j < extraemptyhand ; j++) {
 							for (var i = 0; i < cardpropotions ; i++) {
-								
-								console.log("i:",i," j:",j)
-								eachperson[destnum].push(eachperson[parseInt(ghostpeople)+j][i])
-								destnum++;
-								console.log("Ghost Evolution: ",parseInt(ghostpeople)+i)
-								console.log("eachperson",eachperson," Ghost Value:",eachperson[parseInt(ghostpeople)+j]," Destination for ghost: ",eachperson[i])
+								if (destnum<balancecard) {
+									console.log("i:",i," j:",j)
+									eachperson[destnum].push(eachperson[parseInt(ghostpeople)+j][i])
+									destnum++;
+									console.log("Ghost Evolution: ",parseInt(ghostpeople)+i)
+									console.log("eachperson",eachperson," Ghost Value:",eachperson[parseInt(ghostpeople)+j]," Destination for ghost: ",eachperson[i])
+								}
 							}
 						}
 						eachperson.splice($("#num_people").val())	
