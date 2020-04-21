@@ -42,8 +42,8 @@
 				}else if($("#num_people").val()>0){
 					let cardpropotions = parseInt(decks.length/$("#num_people").val())
 					eachperson = _.chunk(decks, cardpropotions);
-
 					let balancecard = decks.length-(cardpropotions*$("#num_people").val());
+					console.log("cardpropotions:",cardpropotions,balancecard)
 					if(balancecard > 0){
 						let ghostpeople = $("#num_people").val();
 						for (var i = 0; i < balancecard ; i++) {
