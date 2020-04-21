@@ -48,9 +48,9 @@
 						let ghostpeople = $("#num_people").val();
 						console.log("Ghost Num: ",ghostpeople)
 						for (var i = 0; i < balancecard ; i++) {
-							console.log("Ghost Evolution: ",parseInt(ghostpeople)+i)
+							
 							eachperson[i].push(eachperson[parseInt(ghostpeople)+i])
-							console.log(eachperson,eachperson[i]);
+							console.log("Ghost Evolution: ",parseInt(ghostpeople)+i,eachperson[parseInt(ghostpeople)+i],eachperson,eachperson[i])
 						}
 						eachperson.splice($("#num_people").val())	
 					}	
