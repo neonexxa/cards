@@ -14,6 +14,7 @@
 	<script type="text/javascript">
 		window.decks = []
 		window.eachperson = []
+		window.allhands = []
 		var settings = {
 		  "url": "https://boiling-lowlands-60768.herokuapp.com",
 		  "method": "GET",
@@ -58,11 +59,11 @@
 
 				}
 				console.log(eachperson)
-				eachperson = _.map(eachperson, showhands);
-				console.log(eachperson)
+				allhands = _.map(eachperson, showhands);
+				console.log(allhands)
 				let customdom = "";
-				for (var i = 0; i < eachperson.length ; i++) {
-					customdom += eachperson[i]+"<br/>"
+				for (var i = 0; i < allhands.length ; i++) {
+					customdom += allhands[i]+"<br/>"
 				}
 				$("#resultdom").html(customdom)
 			}else{
