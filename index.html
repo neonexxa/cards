@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="number" name="" min="0" id="num_people">
+	<button onclick="distribute()">Distribute Card</button>
+	<p id="resultdom"></p>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+
+	<script type="text/javascript">
+		window.decks = []
+		window.eachperson = []
+		var settings = {
+		  "url": "http://localhost:8000/newcardsdeck.php",
+		  "method": "GET",
+		  "timeout": 0,
+		};
+
+		$.ajax(settings).done(function (response) {
+			decks = eval(response)
+		});
+		function showhands(personhand){
+			return personhand.join(',')
+		}
+		function distribute(){
+			if ($("#num_people").val() && $("#num_people").val()>0) {
+				if ($("#num_people").val()>=decks.length) {
+					eachperson = _.chunk(decks, 1);
+					if ($("#num_people").val()>decks.length) {
+						let emptyarr = [];
+						let extrapersonal = $("#num_people").val()-decks.length;
+						for (var i = 0; i < extrapersonal ; i++) {
+							emptyarr.push([])
+						}
+						eachperson = [...eachperson, ...emptyarr];
+					}
+
+				}else if($("#num_people").val()>0){
+					let cardpropotions = parseInt(decks.length/$("#num_people").val())
+					eachperson = _.chunk(decks, cardpropotions);
+
+					let balancecard = decks.length-(cardpropotions*$("#num_people").val());
+					if(balancecard > 0){
+						let ghostpeople = $("#num_people").val();
+						for (var i = 0; i < balancecard ; i++) {
+							eachperson[i].push(eachperson[parseInt(ghostpeople)+i])
+						}
+						eachperson.splice($("#num_people").val())	
+					}	
+
+				}
+				console.log(eachperson)
+				eachperson = _.map(eachperson, showhands);
+				console.log(eachperson)
+				let customdom = "";
+				for (var i = 0; i < eachperson.length ; i++) {
+					customdom += eachperson[i]+"<br/>"
+				}
+				$("#resultdom").html(customdom)
+			}else{
+				alert("Irregularity occurred")
+			}
+			
+		}
+		
+	</script>
+</body>
+</html>
