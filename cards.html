@@ -48,11 +48,15 @@
 					if(balancecard > 0){
 						let ghostpeople = $("#num_people").val();
 						console.log("Ghost Num: ",ghostpeople)
-						for (var i = 0; i < balancecard ; i++) {
-							
-							eachperson[i].push(eachperson[parseInt(ghostpeople)][i])
-							console.log("Ghost Evolution: ",parseInt(ghostpeople)+i)
-							console.log("eachperson",eachperson," Ghost Value:",eachperson[parseInt(ghostpeople)+i]," Destination for ghost: ",eachperson[i])
+						let extraemptyhand = $("#num_people").val()-balancecard
+						extraemptyhand
+						for (var j = 0; j < extraemptyhand ; j++) {
+							for (var i = 0; i < balancecard ; i++) {
+								
+								eachperson[i].push(eachperson[parseInt(ghostpeople)+j][i])
+								console.log("Ghost Evolution: ",parseInt(ghostpeople)+i)
+								console.log("eachperson",eachperson," Ghost Value:",eachperson[parseInt(ghostpeople)+j]," Destination for ghost: ",eachperson[i])
+							}
 						}
 						eachperson.splice($("#num_people").val())	
 					}	
